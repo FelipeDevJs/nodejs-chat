@@ -10,11 +10,23 @@
 <body>
     <h3>chat</h3>
 
-
+    <input type="text" class="message">
+    <button onclick="sendMessage()">enviar</button>
+    <h1></h1>
     <script>
         const socket = io('http://localhost:3000')
 
         socket.on('connection')
+
+        socket.on('message', (data)=>{
+            document.querySelector('h1').innerHTML = data
+        })
+
+        const sendMessage = () =>{
+            const messInput = document.querySelector('.message')
+            const messager = messInput.value
+            socket.emit('message', messager)
+        }
     </script>
 </body>
 </html>

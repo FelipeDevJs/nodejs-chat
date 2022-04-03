@@ -11,8 +11,13 @@ app.get('/',(req,res, next)=>{
 })
 
 
-server.listen(3000, console.log('🔥 rodando na porta 3000'))
-
 io.on('connection', (socket)=>{
     console.log(socket.id)
+
+    socket.on("message", (data)=>{
+        socket.broadcast.emit('message', data)
+    })
+
 })
+
+server.listen(3000, console.log('🔥 rodando na porta 3000'))
