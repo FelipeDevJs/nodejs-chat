@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const server = require('http').createServer(app)
 const io = require('socket.io')(server, { cors: { origin: "*" } })
-
+const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('API de mensagem com Node.js e Socket.io')
@@ -22,6 +22,6 @@ socket.on('disconnect', () => {
   })
 })
   
-server.listen(3000, () => {
+server.listen(PORT, () => {
   console.log('Servidor iniciado na porta 3000')
 })
